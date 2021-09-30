@@ -1,4 +1,4 @@
-package com.ingbootcamp.accountservice.dto;
+package com.ingbootcamp.accountservice.utilities;
 
 import com.ingbootcamp.accountservice.entity.Account;
 import com.ingbootcamp.servicecommon.contracts.AccountDto;

@@ -2,7 +2,7 @@ package com.ingbootcamp.accountservice.business.concretes;
 
 import com.ingbootcamp.accountservice.business.abstracts.AccountService;
 import com.ingbootcamp.servicecommon.contracts.AccountDto;
-import com.ingbootcamp.accountservice.dto.AccountConverter;
+import com.ingbootcamp.accountservice.utilities.AccountConverter;
 import com.ingbootcamp.accountservice.entity.Account;
 import com.ingbootcamp.accountservice.repository.AccountRepository;
 import com.ingbootcamp.servicecommon.results.*;
