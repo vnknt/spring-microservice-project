@@ -1,7 +1,12 @@
 package com.ingbootcamp.accountservice.dto;
 
+import lombok.Data;
+
+@Data
 public class AccountDto {
-    public String id;
-    public String name;
-    public String username;
+    private String id;
+    private String name;
+    private String surname;
+    private String username;
+    private String password;
 }
