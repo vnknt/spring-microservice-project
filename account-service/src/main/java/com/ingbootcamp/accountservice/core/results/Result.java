@@ -1,7 +1,7 @@
 package com.ingbootcamp.accountservice.core.results;
 
 public class Result {
-    private Boolean success;
+    private boolean success;
     private String message;
 
     public Result(Boolean success){
