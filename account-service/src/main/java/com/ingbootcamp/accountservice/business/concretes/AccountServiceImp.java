@@ -43,9 +43,8 @@ public class AccountServiceImp  implements AccountService {
 
         try{
             this.accountRepository.save(account);
-
         }catch (Exception e){
-            return new ErrorResult("An error occured while saving account");
+            return new ErrorResult(e.getMessage());
         }
         return new SuccessResult("Account is added successfully");
     }

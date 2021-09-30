@@ -8,27 +8,31 @@ import org.springframework.data.cassandra.core.mapping.Table;
 import java.util.Date;
 import java.util.UUID;
 
-@Getter
+
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@Data
+@EqualsAndHashCode(of = {"id"})
+@Getter
 @Table("accounts")
 public class Account {
-    @Column(value = "id")
+
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
 
     @Column(value = "name")
+    @Setter
     private String name;
 
     @Column(value = "surname")
+    @Setter
     private String surname;
 
     @Column(value = "uname")
+    @Setter
     private String username;
 
     @Column(value = "passw")
+    @Setter
     private String password;
 
     @Column(value = "created_at")

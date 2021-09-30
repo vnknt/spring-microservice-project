@@ -34,13 +34,14 @@ public class AccountApi {
         return ResponseEntity.ok(result);
     }
 
+    @PostMapping
     public ResponseEntity<Result> add(@RequestBody AccountDto accountDto){
         Result addResult = accountService.save(accountDto);
         return ResponseEntity.ok(addResult);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Result> delete(@RequestParam(value = "id") String id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Result> delete(@PathVariable(value = "id") String id){
         Result deleteResult = accountService.delete(id);
         return ResponseEntity.ok(deleteResult);
     }
