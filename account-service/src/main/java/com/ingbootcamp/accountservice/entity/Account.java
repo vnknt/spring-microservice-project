@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
-    
+
     private String id;
     private String name;
     private String surname;
