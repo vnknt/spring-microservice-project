@@ -7,6 +7,7 @@
 		<module>service-parent</module>
 		<module>account-service</module>
         <module>docs</module>
+        <module>service-common</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
