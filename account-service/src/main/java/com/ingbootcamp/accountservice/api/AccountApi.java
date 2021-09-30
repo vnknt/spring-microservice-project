@@ -1,11 +1,10 @@
 package com.ingbootcamp.accountservice.api;
 
 import com.ingbootcamp.accountservice.business.abstracts.AccountService;
-import com.ingbootcamp.accountservice.core.results.DataResult;
-import com.ingbootcamp.accountservice.core.results.Result;
-import com.ingbootcamp.accountservice.core.results.SuccessDataResult;
-import com.ingbootcamp.accountservice.dto.AccountDto;
-import lombok.Getter;
+
+import com.ingbootcamp.servicecommon.contracts.AccountDto;
+import com.ingbootcamp.servicecommon.results.DataResult;
+import com.ingbootcamp.servicecommon.results.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

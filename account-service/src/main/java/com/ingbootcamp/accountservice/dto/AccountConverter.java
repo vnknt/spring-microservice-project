@@ -1,11 +1,10 @@
 package com.ingbootcamp.accountservice.dto;
 
 import com.ingbootcamp.accountservice.entity.Account;
+import com.ingbootcamp.servicecommon.contracts.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

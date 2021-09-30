@@ -1,4 +1,4 @@
-package com.ingbootcamp.accountservice.dto;
+package com.ingbootcamp.servicecommon.contracts;
 
 import lombok.Data;
 

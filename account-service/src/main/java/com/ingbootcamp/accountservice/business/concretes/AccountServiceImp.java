@@ -1,11 +1,11 @@
 package com.ingbootcamp.accountservice.business.concretes;
 
 import com.ingbootcamp.accountservice.business.abstracts.AccountService;
-import com.ingbootcamp.accountservice.core.results.*;
-import com.ingbootcamp.accountservice.dto.AccountDto;
+import com.ingbootcamp.servicecommon.contracts.AccountDto;
 import com.ingbootcamp.accountservice.dto.AccountConverter;
 import com.ingbootcamp.accountservice.entity.Account;
 import com.ingbootcamp.accountservice.repository.AccountRepository;
+import com.ingbootcamp.servicecommon.results.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

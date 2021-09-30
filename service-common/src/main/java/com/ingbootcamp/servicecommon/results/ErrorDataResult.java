@@ -1,4 +1,4 @@
-package com.ingbootcamp.accountservice.core.results;
+package com.ingbootcamp.servicecommon.results;
 
 public class ErrorDataResult<T> extends DataResult<T> {
 

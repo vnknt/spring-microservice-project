@@ -1,9 +1,8 @@
 package com.ingbootcamp.accountservice.business.abstracts;
 
-import com.ingbootcamp.accountservice.core.results.DataResult;
-import com.ingbootcamp.accountservice.core.results.Result;
-import com.ingbootcamp.accountservice.dto.AccountDto;
-import com.ingbootcamp.accountservice.entity.Account;
+import com.ingbootcamp.servicecommon.results.DataResult;
+import com.ingbootcamp.servicecommon.results.Result;
+import com.ingbootcamp.servicecommon.contracts.AccountDto;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
