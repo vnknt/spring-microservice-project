@@ -9,6 +9,7 @@
         <module>docs</module>
         <module>service-common</module>
         <module>config-server</module>
+        <module>eureka-server</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
