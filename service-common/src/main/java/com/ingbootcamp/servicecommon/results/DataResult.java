@@ -2,7 +2,9 @@ package com.ingbootcamp.servicecommon.results;
 
 public class DataResult<T> extends Result {
     private T data;
+    public DataResult(){
 
+    }
     public DataResult(T data,Boolean success){
         super(success);
         this.data = data;

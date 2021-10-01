@@ -1,5 +1,6 @@
 package com.ingbootcamp.shipmentservice.business.concretes;
 
+import com.ingbootcamp.servicecommon.clients.AccountServiceClient;
 import com.ingbootcamp.servicecommon.contracts.AccountDto;
 import com.ingbootcamp.servicecommon.contracts.ShipmentDto;
 import com.ingbootcamp.servicecommon.results.*;
@@ -12,11 +13,13 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +27,8 @@ public class ShipmentServiceImpl implements ShipmentService {
     private final ShipmentRepository shipmentRepository;
     private final ModelMapper modelMapper;
     private final ShipmentConverter shipmentConverter;
+    private final AccountServiceClient accountServiceClient;
+
 
     @Override
     public DataResult<List<ShipmentDto>> getAll() {
@@ -47,13 +52,23 @@ public class ShipmentServiceImpl implements ShipmentService {
     @Override
     public Result add(ShipmentDto shipmentDto) {
         Result businessResult = BusinessRules.run(
-                checkAccountId(shipmentDto.getSender()),
-                checkAccountId(shipmentDto.getReciever())
+                checkIsEmpty(shipmentDto.getSender()),
+                checkIsEmpty(shipmentDto.getReciever())
         );
 
         if(!businessResult.isSuccess()){
             return businessResult;
         }
+
+        businessResult = BusinessRules.run(
+                checkAccountId(shipmentDto.getSender()),
+                checkAccountId(shipmentDto.getReciever())
+        );
+        if(!businessResult.isSuccess()){
+            return businessResult;
+        }
+
+
 
         shipmentDto.setSended_at(new Date());
         try{
@@ -82,26 +97,24 @@ public class ShipmentServiceImpl implements ShipmentService {
 
 
     private Result checkAccountId(String id) {
-        TypeToken<DataResult<AccountDto>> accountResponseType = new TypeToken<>(){};
+        ResponseEntity<DataResult<AccountDto>> response = accountServiceClient.get(id);
 
-        WebClient accountServiceClient = WebClient.create();
-        String response = accountServiceClient.get()
-                .uri("http://localhost:8090/accounts/"+id)
-                .exchange()
-                .block()
-                .bodyToMono(String.class)
-                .block();
-
-        DataResult<AccountDto> accountDto = modelMapper.map(response,accountResponseType.getType());
-
-        if(accountDto.isSuccess()){
-            return new SuccessResult();
+        if(!response.getBody().isSuccess()){
+            return new ErrorResult();
         }
-        return new ErrorResult();
-
+        return new SuccessResult();
     }
 
 
+
+
+    private Result checkIsEmpty(String str){
+
+        if(str.trim().isEmpty()){
+            return new ErrorResult("Id cannot be null");
+        }
+        return new SuccessResult();
+    }
 
 
 

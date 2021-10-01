@@ -3,7 +3,7 @@ package com.ingbootcamp.servicecommon.results;
 public class Result {
     private boolean success;
     private String message;
-
+    public Result(){}
     public Result(Boolean success){
         this.success = success;
     }
@@ -16,7 +16,6 @@ public class Result {
     public String getMessage(){
         return this.message;
     }
-
     public Boolean isSuccess(){
         return this.success;
     }
