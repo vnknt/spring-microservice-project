@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
@@ -41,6 +42,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     public Result add(DeliveryDto deliveryDto) {
         try{
             Delivery delivery = modelMapper.map(deliveryDto,Delivery.class);
+            delivery.setCreated_at(new Date());
             deliveryRepository.save(delivery);
         }catch (Exception e){
             return new ErrorResult("An error occured while addng delivery object");

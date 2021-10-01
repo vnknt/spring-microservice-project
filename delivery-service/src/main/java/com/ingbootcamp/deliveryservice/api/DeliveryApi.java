@@ -7,10 +7,7 @@ import com.ingbootcamp.servicecommon.results.DataResult;
 import com.ingbootcamp.servicecommon.results.Result;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ public class DeliveryApi {
     }
 
     @PostMapping
-    public ResponseEntity<Result> add(DeliveryDto deliveryDto){
+    public ResponseEntity<Result> add(@RequestBody DeliveryDto deliveryDto){
         return ResponseEntity.ok(deliveryService.add(deliveryDto));
     }
 
