@@ -12,11 +12,7 @@
 
     <artifactId>notification-service</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <version>2.2.2.RELEASE</version>
-        </dependency>
+
     </dependencies>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

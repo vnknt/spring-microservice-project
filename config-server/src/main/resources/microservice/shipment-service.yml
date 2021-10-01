@@ -1,6 +1,16 @@
 spring:
   application:
     name: shipment-service
+
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: delivery
+  rabbitmq:
+    username: admin
+    password: root
+
   data:
     mongodb:
       host: localhost

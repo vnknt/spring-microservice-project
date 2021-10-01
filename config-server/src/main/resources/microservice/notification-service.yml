@@ -1,6 +1,15 @@
 spring:
   application:
     name: notification-service
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: delivery
+
+  rabbitmq:
+    username: admin
+    password: root
 
 eureka:
   client:
