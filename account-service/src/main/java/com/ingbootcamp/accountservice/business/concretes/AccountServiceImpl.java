@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 @RequiredArgsConstructor
-public class AccountServiceImp  implements AccountService {
+public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;

@@ -11,11 +11,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ShipmentServiceImp implements ShipmentService {
+public class ShipmentServiceImpl implements ShipmentService {
     private final ShipmentRepository shipmentRepository;
     private final ModelMapper modelMapper;
     private final ShipmentConverter shipmentConverter;
@@ -30,7 +31,10 @@ public class ShipmentServiceImp implements ShipmentService {
     @Override
     public DataResult<ShipmentDto> get(String id) {
 
-        Shipment shipment = shipmentRepository.findById(id).orElse(null);
+        Shipment shipment = shipmentRepository.findById(id).orElseGet(()->null);
+        if(shipment ==null){
+            return new ErrorDataResult<>("Shipment couldn't be found");
+        }
         ShipmentDto shipmentDto = modelMapper.map(shipment,ShipmentDto.class);
         return new SuccessDataResult<>(shipmentDto);
 
@@ -38,6 +42,7 @@ public class ShipmentServiceImp implements ShipmentService {
 
     @Override
     public Result add(ShipmentDto shipmentDto) {
+        shipmentDto.setSended_at(new Date());
         try{
             Shipment shipment = modelMapper.map(shipmentDto,Shipment.class);
             shipmentRepository.save(shipment);
