@@ -1,0 +1,9 @@
+server:
+  port: 8092
+spring:
+  application:
+    name: delivery-service
+  cloud:
+    config:
+      uri: https:localhost:8888
+      profile: native

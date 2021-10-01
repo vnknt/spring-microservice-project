@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: delivery-service
+  datasource:
+    username: javadevjournal
+    url: jdbc:mysql://localhost:3306/javadevjournal
+    password: ThePassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://localhost:8761/eureka
+  instance:
+    hostname: localhost
