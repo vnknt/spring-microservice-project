@@ -2,13 +2,15 @@ spring:
   application:
     name: delivery-service
   datasource:
-    username: javadevjournal
-    url: jdbc:mysql://localhost:3306/javadevjournal
-    password: ThePassword
+    username: root
+    password: admin
+    url: jdbc:mysql://localhost:3306/deliverydb
+
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-
 eureka:
   client:
     serviceUrl:
