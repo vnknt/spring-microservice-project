@@ -8,7 +8,7 @@ import com.ingbootcamp.servicecommon.results.Result;
 import java.util.List;
 
 public interface DeliveryService {
-    List<DataResult<DeliveryDto>> getAll();
+    DataResult<List<DeliveryDto>> getAll();
     DataResult<DeliveryDto> get(String id);
     Result add(DeliveryDto deliveryDto);
     Result update(DeliveryDto deliveryDto);

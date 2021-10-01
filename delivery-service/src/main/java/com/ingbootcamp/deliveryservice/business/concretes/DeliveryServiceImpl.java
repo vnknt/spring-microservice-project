@@ -4,13 +4,14 @@ import com.ingbootcamp.deliveryservice.business.abstracts.DeliveryService;
 import com.ingbootcamp.servicecommon.contracts.DeliveryDto;
 import com.ingbootcamp.servicecommon.results.DataResult;
 import com.ingbootcamp.servicecommon.results.Result;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class DeliveryServiceImpl implements DeliveryService {
 
     @Override
-    public List<DataResult<DeliveryDto>> getAll() {
+    public DataResult<List<DeliveryDto>> getAll() {
         return null;
     }
 
