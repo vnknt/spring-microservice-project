@@ -10,7 +10,8 @@
         <module>service-common</module>
         <module>config-server</module>
         <module>eureka-server</module>
-    </modules>
+		<module>shipment-service</module>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
