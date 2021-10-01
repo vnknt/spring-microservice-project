@@ -23,11 +23,6 @@
             <artifactId>spring-boot-starter-data-cassandra</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.modelmapper</groupId>
-            <artifactId>modelmapper</artifactId>
-            <version>2.4.2</version>
-        </dependency>
-        <dependency>
             <groupId>com.ingbootcamp</groupId>
             <artifactId>service-common</artifactId>
             <version>0.1</version>
