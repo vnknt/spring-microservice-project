@@ -1,4 +1,4 @@
-package com.ingbootcamp.deliveryservice.entity;
+package com.ingbootcamp.servicecommon.contracts;
 
 import lombok.Getter;
 
