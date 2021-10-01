@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: shipment-service
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: admin
+      password: root
+      database: spcloud
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost

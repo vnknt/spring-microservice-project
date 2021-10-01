@@ -1,3 +1,5 @@
+server:
+  port: 8091
 spring:
   application:
     name: shipment-service
@@ -5,7 +7,4 @@ spring:
     config:
       uri: http://localhost:8888
       profile: native
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017
-      
+
