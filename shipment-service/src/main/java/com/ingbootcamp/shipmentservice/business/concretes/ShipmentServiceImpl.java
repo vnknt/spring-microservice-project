@@ -1,15 +1,19 @@
 package com.ingbootcamp.shipmentservice.business.concretes;
 
+import com.ingbootcamp.servicecommon.contracts.AccountDto;
 import com.ingbootcamp.servicecommon.contracts.ShipmentDto;
 import com.ingbootcamp.servicecommon.results.*;
+import com.ingbootcamp.servicecommon.utils.BusinessRules;
 import com.ingbootcamp.shipmentservice.business.abstracts.ShipmentService;
 import com.ingbootcamp.shipmentservice.entity.Shipment;
 import com.ingbootcamp.shipmentservice.repository.ShipmentRepository;
 import com.ingbootcamp.shipmentservice.utilities.ShipmentConverter;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Date;
 import java.util.List;
@@ -42,6 +46,15 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public Result add(ShipmentDto shipmentDto) {
+        Result businessResult = BusinessRules.run(
+                checkAccountId(shipmentDto.getSender()),
+                checkAccountId(shipmentDto.getReciever())
+        );
+
+        if(!businessResult.isSuccess()){
+            return businessResult;
+        }
+
         shipmentDto.setSended_at(new Date());
         try{
             Shipment shipment = modelMapper.map(shipmentDto,Shipment.class);
@@ -66,4 +79,30 @@ public class ShipmentServiceImpl implements ShipmentService {
     public Result update(ShipmentDto shipmentDto) {
         return null;
     }
+
+
+    private Result checkAccountId(String id) {
+        TypeToken<DataResult<AccountDto>> accountResponseType = new TypeToken<>(){};
+
+        WebClient accountServiceClient = WebClient.create();
+        String response = accountServiceClient.get()
+                .uri("http://localhost:8090/accounts/"+id)
+                .exchange()
+                .block()
+                .bodyToMono(String.class)
+                .block();
+
+        DataResult<AccountDto> accountDto = modelMapper.map(response,accountResponseType.getType());
+
+        if(accountDto.isSuccess()){
+            return new SuccessResult();
+        }
+        return new ErrorResult();
+
+    }
+
+
+
+
+
 }
