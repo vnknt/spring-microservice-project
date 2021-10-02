@@ -12,7 +12,11 @@
 
     <artifactId>notification-service</artifactId>
     <dependencies>
-
+        <dependency>
+            <groupId>com.ingbootcamp</groupId>
+            <artifactId>service-common</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

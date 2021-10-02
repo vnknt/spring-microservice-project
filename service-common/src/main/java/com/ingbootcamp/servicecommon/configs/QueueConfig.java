@@ -15,11 +15,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QueueConfig {
 
-    public static String QUEUE_NAME = "delivery";
+    public static final String QUEUE_NAME = "delivery";
 
-    public static String TOPIC_EXCHANGE="message_exchange";
+    public static final String TOPIC_EXCHANGE="message_exchange";
 
-    public static String ROUTING_KEY="message_routing";
+    public static final String ROUTING_KEY="message_routing";
 
     @Bean
     public Queue queue(){

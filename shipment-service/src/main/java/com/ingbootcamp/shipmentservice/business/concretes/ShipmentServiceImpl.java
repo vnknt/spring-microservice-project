@@ -2,7 +2,9 @@ package com.ingbootcamp.shipmentservice.business.concretes;
 
 import com.ingbootcamp.servicecommon.clients.AccountServiceClient;
 import com.ingbootcamp.servicecommon.contracts.AccountDto;
+import com.ingbootcamp.servicecommon.contracts.Notification;
 import com.ingbootcamp.servicecommon.contracts.ShipmentDto;
+import com.ingbootcamp.servicecommon.messaging.NotificationPublisher;
 import com.ingbootcamp.servicecommon.results.*;
 import com.ingbootcamp.servicecommon.utils.BusinessRules;
 import com.ingbootcamp.shipmentservice.business.abstracts.ShipmentService;
@@ -28,7 +30,7 @@ public class ShipmentServiceImpl implements ShipmentService {
     private final ModelMapper modelMapper;
     private final ShipmentConverter shipmentConverter;
     private final AccountServiceClient accountServiceClient;
-
+    private final NotificationPublisher notificationPublisher;
 
     @Override
     public DataResult<List<ShipmentDto>> getAll() {
@@ -77,6 +79,10 @@ public class ShipmentServiceImpl implements ShipmentService {
         }catch (Exception e){
             return new ErrorResult("Shipment couldn't save");
         }
+        Notification notification = new Notification();
+        notification.setTitle("Shipment is added");
+        notification.setDescription("Description");
+        notificationPublisher.sendNotification(notification);
         return new SuccessResult("Successfully saved");
     }
 

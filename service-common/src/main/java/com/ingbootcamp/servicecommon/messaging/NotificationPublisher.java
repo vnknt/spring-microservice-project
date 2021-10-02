@@ -19,7 +19,7 @@ public class NotificationPublisher {
         template.convertAndSend(
                 QueueConfig.TOPIC_EXCHANGE,
                 QueueConfig.ROUTING_KEY,
-                notification.toString()
+                notification
         );
     }
 

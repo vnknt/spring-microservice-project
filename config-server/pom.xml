@@ -15,6 +15,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.ingbootcamp</groupId>
+            <artifactId>service-common</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
