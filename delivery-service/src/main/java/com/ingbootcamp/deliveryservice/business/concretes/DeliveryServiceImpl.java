@@ -5,6 +5,9 @@ import com.ingbootcamp.deliveryservice.entity.Delivery;
 import com.ingbootcamp.deliveryservice.repository.DeliveryRepository;
 import com.ingbootcamp.deliveryservice.utilities.DeliveryConverter;
 import com.ingbootcamp.servicecommon.contracts.DeliveryDto;
+import com.ingbootcamp.servicecommon.contracts.DeliveryStatus;
+import com.ingbootcamp.servicecommon.contracts.Notification;
+import com.ingbootcamp.servicecommon.messaging.NotificationPublisher;
 import com.ingbootcamp.servicecommon.results.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,7 +22,7 @@ public class DeliveryServiceImpl implements DeliveryService {
     private final DeliveryRepository deliveryRepository;
     private final ModelMapper modelMapper;
     private final DeliveryConverter deliveryConverter;
-
+    private final NotificationPublisher notificationPublisher;
     @Override
     public DataResult<List<DeliveryDto>> getAll() {
         List<Delivery> deliveries = deliveryRepository.findAll();
@@ -47,6 +50,14 @@ public class DeliveryServiceImpl implements DeliveryService {
         }catch (Exception e){
             return new ErrorResult("An error occured while addng delivery object");
         }
+        Notification notification = new Notification();
+        if(deliveryDto.getStatus() == DeliveryStatus.DELIVERED ){
+            notification.setTitle("Shipment is Delivered sucessfully");
+        }else if(deliveryDto.getStatus().equals(DeliveryStatus.UNDELIVERED)) {
+            notification.setTitle("Shipment is NOT Delivered");
+        }
+
+
         return new SuccessResult();
     }
 
