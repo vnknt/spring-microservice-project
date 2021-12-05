@@ -12,7 +12,8 @@
 		<module>shipment-service</module>
 		<module>delivery-service</module>
 		<module>notification-service</module>
-	</modules>
+        <module>gateway-server</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

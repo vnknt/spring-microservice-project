@@ -1,0 +1,41 @@
+server:
+  port: 9191
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
+  instance:
+    preferIpAddress: true
+
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/accounts/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+
+        - id: shipment-service
+          uri: lb://SHIPMENT-SERVICE
+          predicates:
+            - Path=/shipments/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+
+        - id: delivery-service
+          uri: lb://DELIVERY-SERVICE
+          predicates:
+            - Path=/delivery/**
+          filters:
+            - RewritePath=/(?<segment>.*), /$\{segment}
+
+
